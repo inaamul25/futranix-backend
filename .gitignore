@@ -1,0 +1,8 @@
+target/
+node_modules/
+*.log
+*.mp4
+*.zip
+*.jar
+storage/
+uploads/

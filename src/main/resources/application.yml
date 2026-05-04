@@ -1,0 +1,58 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/smart_learning_platform?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 4096MB
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-secret-to-a-very-long-random-string-change-this-secret}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  storage:
+    root: ${APP_STORAGE_ROOT:./storage}
+    public-base-url: ${APP_STORAGE_PUBLIC_BASE_URL:http://localhost:8080}
+    allowed-video-types:
+      - video/mp4
+    max-video-size-bytes: 1073741824
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  password-reset:
+    expiry-minutes: ${PASSWORD_RESET_EXPIRY_MINUTES:30}
+  paytm:
+    enabled: ${PAYTM_ENABLED:false}
+    mid: ${PAYTM_MID:YOUR_MID}
+    merchant-key: ${PAYTM_MERCHANT_KEY:YOUR_MERCHANT_KEY}
+    website: ${PAYTM_WEBSITE:WEBSTAGING}
+    callback-url: ${PAYTM_CALLBACK_URL:http://localhost:8080/api/payment/callback}
+    initiate-url: ${PAYTM_INITIATE_URL:https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction}
+    status-url: ${PAYTM_STATUS_URL:https://securegw-stage.paytm.in/v3/order/status}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
