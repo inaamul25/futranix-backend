@@ -14,4 +14,4 @@ RUN chmod +x mvnw
 RUN ./mvnw clean install -DskipTests
 
 # Run app
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "target/smart-modular-learning-platform-1.0.0.jar"]
